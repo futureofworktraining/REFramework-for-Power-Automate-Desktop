@@ -1,0 +1,15 @@
+IF Runs > Config.Retry THEN
+    ERROR => LastError
+    CALL Mark_System_Exception
+    CALL New_Init
+ELSE IF LastError <> $'''No Error''' THEN
+    IF StartsWith(LastError, $'''Business Exception''', False) THEN
+        CALL Mark_Business_Exception
+        CALL Get_Transaction_Data
+    ELSE
+        CALL New_Init
+    END
+ELSE
+    CALL Mark_Complete
+    CALL Get_Transaction_Data
+END

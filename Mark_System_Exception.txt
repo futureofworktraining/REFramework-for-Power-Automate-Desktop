@@ -1,0 +1,4 @@
+Excel.WriteToExcel.WriteCell Instance: ExcelInstance Value: $'''System Exception - %LastError%''' Column: $'''D''' Row: DataRow + 1
+SET DataRow TO DataRow + 1
+SET LastError TO $'''No Error'''
+SET Runs TO 1

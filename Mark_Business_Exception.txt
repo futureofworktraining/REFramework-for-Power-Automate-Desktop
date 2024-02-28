@@ -1,0 +1,5 @@
+DISABLE Excel.LaunchExcel.LaunchAndOpenUnderExistingProcess Path: $'''C:\\Users\\krzys\\OneDrive\\Dokumenty\\Transactions.xlsx''' Visible: True ReadOnly: False Instance=> ExcelInstance
+Excel.WriteToExcel.WriteCell Instance: ExcelInstance Value: $'''Business Exception''' Column: $'''D''' Row: DataRow + 1
+SET DataRow TO DataRow + 1
+SET Runs TO 1
+SET LastError TO $'''No Error'''

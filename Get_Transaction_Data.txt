@@ -1,0 +1,4 @@
+Excel.ReadFromExcel.ReadCells Instance: ExcelInstance StartColumn: $'''A''' StartRow: DataRow + 1 EndColumn: $'''C''' EndRow: DataRow + 1 ReadAsText: False FirstLineIsHeader: False RangeValue=> ExcelData
+SET var_CashIn TO ExcelData[0][0]
+SET var_OnUsCheck TO ExcelData[0][1]
+SET var_NotOnUsCheck TO ExcelData[0][2]

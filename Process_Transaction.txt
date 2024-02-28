@@ -1,0 +1,16 @@
+
+FUNCTION Process_Transaction GLOBAL
+    DISABLE Display.ShowMessageDialog.ShowMessage Title: $'''Data to Process''' Message: $'''CashIn: %var_CashIn%
+OnUsCheck: %var_OnUsCheck%
+NotOnUsCheck: %var_NotOnUsCheck%''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed2
+    /# Data Validation
+#/
+    IF IsEmpty(var_CashIn) THEN
+        SET LastError TO $'''Business Exception - Arguments cannot be empty.'''
+        GOTO Process_Transaction_End
+    END
+    # Process Execusion
+    @@flowname: 'UiDemo_EnterData'
+External.RunFlow FlowId: 'b50a9a3e-7c14-4b85-84af-5b5b8bfef8ea' @In_CashIn: var_CashIn @In_OnUsCheck: var_OnUsCheck @In_NotOnUsCheck: var_NotOnUsCheck
+    LABEL Process_Transaction_End
+END FUNCTION

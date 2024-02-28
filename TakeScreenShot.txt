@@ -1,0 +1,5 @@
+DateTime.GetCurrentDateTime.Local DateTimeFormat: DateTime.DateTimeFormat.DateAndTime CurrentDateTime=> CurrentDateTime
+ERROR => LastError
+SET Screenshotname TO $'''%Config.ProjectName%_%CurrentDateTime.Year%%CurrentDateTime.Month%%CurrentDateTime.Day%%CurrentDateTime.Hour%%CurrentDateTime.Minute%%CurrentDateTime.Second%.jpg'''
+DISABLE Display.ShowMessageDialog.ShowMessage Message: Screenshotname Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Workstation.TakeScreenshot.TakeScreenshotAndSaveToFile File: $'''C:\\UiDemo\\Exceptions\\%Screenshotname%''' ImageFormat: System.ImageFormat.Jpg

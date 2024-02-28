@@ -1,0 +1,47 @@
+LABEL Init
+BLOCK Init
+ON BLOCK ERROR
+    GOTO End_Process
+END
+    CALL Init
+END
+LABEL Get_Transaction
+IF DataRow > WorkSheetData.RowsCount THEN
+    GOTO End_Process
+END
+BLOCK Get_Transaction_Data
+ON BLOCK ERROR
+    THROW ERROR
+END
+    CALL Get_Transaction_Data
+END
+LABEL Process_Transaction
+BLOCK Process_Transaction
+ON BLOCK ERROR
+    SET Runs TO Runs + 1
+    CALL TakeScreenShot
+END
+    CALL Process_Transaction
+END
+IF Runs > Config.Retry THEN
+    ERROR => LastError
+    CALL Mark_System_Exception
+    GOTO Init
+ELSE IF LastError <> $'''No Error''' THEN
+    IF StartsWith(LastError, $'''Business Exception''', False) THEN
+        CALL Mark_Business_Exception
+        GOTO Get_Transaction
+    ELSE
+        GOTO Init
+    END
+ELSE
+    CALL Mark_Complete
+    GOTO Get_Transaction
+END
+LABEL End_Process
+BLOCK End_Process
+ON BLOCK ERROR
+    THROW ERROR
+END
+    CALL End_Process
+END

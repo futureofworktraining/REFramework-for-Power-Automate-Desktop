@@ -7,7 +7,7 @@ ELSE IF LastError <> $'''No Error''' THEN
         CALL Mark_Business_Exception
         CALL Get_Transaction_Data
     ELSE
-        CALL New_Init
+        CALL Init
     END
 ELSE
     CALL Mark_Complete
